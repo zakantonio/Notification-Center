@@ -63,6 +63,7 @@ public class MainActivity extends ActionBarActivity {
                 alarmDatePicker.show();
             }
         });
+
         eventTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,15 +84,17 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent("my.action.notification.event");
-                myIntent.putExtra("not_id", 0);
-                myIntent.putExtra("not_title", "My notification event");
-                myIntent.putExtra("not_msg", "This is a notification with a setted time.");
-                myIntent.putExtra("not_icon", R.drawable.ic_launcher);
+                myIntent.putExtra(NotificationCenter.NOT_ID, 0);
+                myIntent.putExtra(NotificationCenter.NOT_TITLE, "My notification event");
+                myIntent.putExtra(NotificationCenter.NOT_MSG, "This is a notification with a setted time.");
+                myIntent.putExtra(NotificationCenter.NOT_ICON, R.drawable.ic_launcher);
+                myIntent.putExtra(NotificationCenter.NOT_NEXT, NextActivity.class);
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, myIntent,PendingIntent.FLAG_UPDATE_CURRENT);
                 AlarmManager alarmManager = (AlarmManager)context.getSystemService(ALARM_SERVICE);
                 alarmManager.set(AlarmManager.RTC, c.getTimeInMillis(), pendingIntent);
                 eventDate.setText(getResources().getString(R.string.click_set_date));
                 eventTime.setText(getResources().getString(R.string.click_set_time));
+
                 Toast.makeText(context, "Notification created!", Toast.LENGTH_SHORT).show();
             }
         });

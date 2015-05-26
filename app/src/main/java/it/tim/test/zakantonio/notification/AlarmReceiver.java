@@ -22,25 +22,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
         if(intent.getAction() == "my.action.notification.event") {
-                Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                 mManager = (NotificationManager) context.getApplicationContext().getSystemService(context.getApplicationContext().NOTIFICATION_SERVICE);
-
-                Intent notIntent = new Intent(context.getApplicationContext(), NextActivity.class);
-
-                Notification notification = new Notification(intent.getExtras().getInt("not_icon", R.drawable.ic_launcher),
-                        intent.getExtras().getString("not_title"), System.currentTimeMillis());
-
-                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-                PendingIntent pendingNotificationIntent = PendingIntent.getActivity( context.getApplicationContext(),0, notIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                notification.flags |= Notification.FLAG_AUTO_CANCEL;
-                notification.setLatestEventInfo(context.getApplicationContext(),
-                        intent.getExtras().getString("not_title"),
-                        intent.getExtras().getString("not_msg"),
-                        pendingNotificationIntent);
-                notification.sound = sound;
-                mManager.notify(intent.getExtras().getInt("not_id", 0), notification);
-
+                NotificationCenter.makeNotification(context, intent);
         }
     }
 }

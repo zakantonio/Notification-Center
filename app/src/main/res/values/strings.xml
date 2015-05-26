@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Notification</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_next">NextActivity</string>
+    <string name="click_set_time">Click to set the time..</string>
+    <string name="click_set_date">Click to set the date..</string>
+</resources>
